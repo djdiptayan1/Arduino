@@ -1,22 +1,24 @@
 double duration;
 double distance;
+int echo = A1;
+int trig = A0;
 void setup() {
-  pinMode(9,OUTPUT);
-  pinMode(8,INPUT);
+  pinMode(trig, OUTPUT);
+  pinMode(echo, INPUT);
   Serial.begin(9600);
 }
 
 void loop() {
-  digitalWrite(9,LOW);
+  digitalWrite(trig, LOW);
   delayMicroseconds(2);
-  digitalWrite(9,HIGH);
+  digitalWrite(trig, HIGH);
   delayMicroseconds(10);
-  digitalWrite(9,LOW);
+  digitalWrite(trig, LOW);
 
-  duration=pulseIn(8,HIGH);
-  distance=(duration*0.034)/2;
+  duration = pulseIn(echo, HIGH);
+  distance = (duration * 0.034) / 2;
   Serial.print("distance ");
   Serial.print(distance);
   Serial.println();
-
+  delay(100);
 }

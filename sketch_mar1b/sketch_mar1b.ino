@@ -6,7 +6,7 @@ IBusBM ibus;
 #define IR4 11
 #define IR5 12
 //hercules
-#define pwm 127
+int pwm = 127;
 #define en 1
 #define in1 2
 #define in2 3
@@ -14,7 +14,7 @@ IBusBM ibus;
 #define relay 7
 
 int flag1 = 0, flag2 = 0, flag3 = 0, flag4 = 0, flag5 = 0;
-int flag, flagtrig;\
+int flag, flagtrig;
 
 int readChannel(byte channelInput, int minLimit, int maxLimit, int defaultValue) {
   uint16_t ch = ibus.readChannel(channelInput);
@@ -115,5 +115,4 @@ void loop() {
     stop();
     Serial.println("STOPPED");
   }
-  //flagtrig=0,flag=0;
 }

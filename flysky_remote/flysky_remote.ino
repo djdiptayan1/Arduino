@@ -36,7 +36,7 @@ void setup() {
   Serial.begin(115200);
 
   // Attach iBus object to serial port
-  ibus.begin(Serial);
+  ibus.begin(Serial1);
 }
 
 void loop() {
@@ -45,7 +45,7 @@ void loop() {
   // Print values to serial monitor
   // Note IBusBM library labels channels starting with "0"
 
-  for (byte i = 0; i < 5; i++) {
+  for (byte i = 0; i < 10; i++) {
     int value = readChannel(i, -100, 100, 0);
     Serial.print("Ch");
     Serial.print(i + 1);
@@ -55,8 +55,12 @@ void loop() {
   }
 
   // Print channel 6 (switch) boolean value
-  Serial.print("Ch6: ");
-  Serial.print(readSwitch(5, false));
+  // Serial.print("Ch6: ");
+  // Serial.print(readChannel(5, -100, 100, 0));
+  // Serial.print("Ch7: ");
+  // Serial.print(readChannel(6, -100, 100, 0));
+  // Serial.print("Ch8: ");
+  // Serial.print(readSwitch(7, false));
   Serial.println();
 
   delay(10);
