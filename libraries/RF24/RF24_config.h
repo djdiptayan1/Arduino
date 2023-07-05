@@ -24,7 +24,7 @@
 //#define SERIAL_DEBUG
 //#define MINIMAL
 //#define SPI_UART    // Requires library from https://github.com/TMRh20/Sketches/tree/master/SPI_UART
-//#define SOFTSPI     // Requires library from https://github.com/greiman/DigitalIO
+#define SOFTSPI     // Requires library from https://github.com/greiman/DigitalIO
 
 /**
  * User access to internally used delay time (in microseconds) during RF24::powerUp()
@@ -101,15 +101,15 @@ typedef uint16_t rf24_gpio_pin_t;
             // change these pins to your liking
             //
             #ifndef SOFT_SPI_MISO_PIN
-                #define SOFT_SPI_MISO_PIN 9
+                #define SOFT_SPI_MISO_PIN 11
             #endif // SOFT_SPI_MISO_PIN
 
             #ifndef SOFT_SPI_MOSI_PIN
-                #define SOFT_SPI_MOSI_PIN 8
+                #define SOFT_SPI_MOSI_PIN 12
             #endif // SOFT_SPI_MOSI_PIN
 
             #ifndef SOFT_SPI_SCK_PIN
-                #define SOFT_SPI_SCK_PIN 7
+                #define SOFT_SPI_SCK_PIN 13
             #endif // SOFT_SPI_SCK_PIN
 
 const uint8_t SPI_MODE = 0;
