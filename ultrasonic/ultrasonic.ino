@@ -2,6 +2,7 @@ double duration;
 double distance;
 int echo = A1;
 int trig = A0;
+
 void setup() {
   pinMode(trig, OUTPUT);
   pinMode(echo, INPUT);

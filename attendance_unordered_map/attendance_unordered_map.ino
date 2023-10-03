@@ -9,7 +9,7 @@
 #define tot 5  //sets total number of people
 
 //WIFI
-const char* ssid = "DIPTAYAN-JASH 0982";
+const char* ssid = "Rupkatha's Galaxy A32";
 const char* password = "G662+28k";
 
 //DISPLAY
@@ -36,7 +36,6 @@ std::unordered_map<std::string, std::string> id = {
   { "249224147101", "Diptayan" },
   { "20115312290", "Krrish" },
   { "105199145101", "Ayan" },
-  { "2176091112", "Daniel" },
   { "89195136101", "Siddhima" },
   { "732146101", "Akhil" },
   { "12146146101", "Sanjeevini" },
@@ -63,8 +62,10 @@ std::unordered_map<std::string, std::string> id = {
   {"13210921051","Danush"},
   {"97722105","Maitry"},
   {"2277414879","Rehana"},
+  {"2519143101","Medhir"},
+  {"16934139101","Daniel"},
+  {"8920214593","Smeet"},
   {"41237136101","Idhant"}
-
 };
  //inside opening
 byte temp;
@@ -73,13 +74,13 @@ void setup() {
   lcd.init();
   lcd.clear();
   lcd.backlight();
-  Serial.begin(9600);
+  Serial.begin(115200);
   SPI.begin();      // Init SPI bus
   rfid.PCD_Init();  // Init MFRC522
   pinMode(RELAY_PIN, OUTPUT);
 
   //SD CARD
-  //sdinitialize();
+  sdinitialize();
   //wifi
   //connectwifi();
   pinMode(inside, INPUT_PULLUP);
@@ -123,17 +124,17 @@ void loop() {
       lcd.println(strfind);     //check
       delay(2000);
       digitalWrite(RELAY_PIN, HIGH);
-      delay(4000);
+      delay(2000);
       digitalWrite(RELAY_PIN, LOW);
       myfile = SD.open("attendance.csv", FILE_WRITE);
       data = strfind + "," + tag;  //check
       myfile.println(data);
-      Serial.println("WROTE IN FILE SUCCESSFUL");
+      Serial.println("WROTE IN FILE SUCCESSFULLY");
       myfile.close();
     } else {
       lcd.clear();
       lcd.setCursor(2, 0);
-      lcd.print("Who Tf are You ?");
+      lcd.print("UN-IDENTIFIED");
       lcd.setCursor(1, 1);
       lcd.print(tag);
       Serial.println(tag);

@@ -11,27 +11,7 @@
 #ifndef BlynkDetectDevice_h
 #define BlynkDetectDevice_h
 
-// General defines
-
-#define BLYNK_NEWLINE "\r\n"
-
-#define BLYNK_CONCAT(a, b) a ## b
-#define BLYNK_CONCAT2(a, b) BLYNK_CONCAT(a, b)
-
-#define BLYNK_STRINGIFY(x) #x
-#define BLYNK_TOSTRING(x) BLYNK_STRINGIFY(x)
-
-#define BLYNK_COUNT_OF(x) ((sizeof(x)/sizeof(0[x])) / ((size_t)(!(sizeof(x) % sizeof(0[x])))))
-
-#define BLYNK_ATTR_PACKED __attribute__ ((__packed__))
-#define BLYNK_NORETURN    __attribute__ ((noreturn))
-#define BLYNK_UNUSED      __attribute__((__unused__))
-#define BLYNK_DEPRECATED  __attribute__ ((deprecated))
-#define BLYNK_CONSTRUCTOR __attribute__((constructor))
-#define BLYNK_FALLTHROUGH __attribute__ ((fallthrough))
-
-// Causes problems on some platforms
-#define BLYNK_FORCE_INLINE inline //__attribute__((always_inline))
+#include <Blynk/BlynkHelpers.h>
 
 #ifndef BLYNK_INFO_CPU
 
@@ -236,7 +216,8 @@
         #if defined(ARDUINO_ARCH_SAMD) || \
             defined(ESP32) || defined(ESP8266) || \
             defined(ARDUINO_ARCH_RP2040) || \
-            defined(ARDUINO_ARCH_NRF52840)
+            defined(ARDUINO_ARCH_NRF52840) || \
+            defined(ARDUINO_ARCH_RENESAS)
 
             #define BLYNK_USE_128_VPINS
             #define BLYNK_BUFFERS_SIZE 1024
@@ -302,6 +283,7 @@
         /* Arduino megaAVR */
         #elif defined(ARDUINO_AVR_UNO_WIFI_REV2)
         #define BLYNK_INFO_DEVICE  "Arduino UNO WiFi Rev2"
+        #define BLYNK_USE_INTERNAL_ATOLL
 
         /* Arduino SAM */
         #elif defined(ARDUINO_SAM_DUE)
@@ -332,6 +314,15 @@
         #define BLYNK_INFO_DEVICE  "Nano 33 IoT"
         #elif defined(TARGET_ARDUINO_NANO33BLE) || defined(ARDUINO_ARDUINO_NANO33BLE) || defined(ARDUINO_NANO33BLE)
         #define BLYNK_INFO_DEVICE  "Nano 33 BLE"
+
+        /* Arduino RA */
+        #elif defined(ARDUINO_MINIMA)
+        #define BLYNK_INFO_DEVICE  "UNO R4 Minima"
+        #elif defined(ARDUINO_UNOWIFIR4)
+        #define BLYNK_INFO_DEVICE  "UNO R4 WiFi"
+        #elif defined(ARDUINO_PORTENTA_C33)
+        #define BLYNK_INFO_DEVICE  "Portenta C33"
+        #define BLYNK_USE_INTERNAL_DTOSTRF
 
         /* RapsberryPi */
         #elif defined(ARDUINO_RASPBERRY_PI_PICO_W)

@@ -45,7 +45,7 @@ void loop() {
   // Print values to serial monitor
   // Note IBusBM library labels channels starting with "0"
 
-  for (byte i = 0; i < 10; i++) {
+  for (byte i = 0; i < 6; i++) {
     int value = readChannel(i, -100, 100, 0);
     Serial.print("Ch");
     Serial.print(i + 1);
