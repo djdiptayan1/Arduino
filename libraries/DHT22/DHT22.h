@@ -12,6 +12,14 @@
 #include "Arduino.h"
 
 class DHT22{
+  public:
+    enum error{
+            OK,
+            ERR_TIMING_80,
+            ERR_TIMING_50,
+            ERR_TIMING_BITS,
+            ERR_CRC
+          };
   private:
     uint8_t _pinData;
     uint32_t _timer;
@@ -25,21 +33,12 @@ class DHT22{
     uint8_t _timingBit0 = 27; //specs for AM2303
     uint8_t _timingBit1 = 70; //specs for AM2303
     bool _firstStart=true;
-    uint8_t _lastError;
+    error _lastError;
 
     const uint8_t T = 30;
-    enum error{
-      OK,
-      ERR_TIMING_80,
-      ERR_TIMING_50,
-      ERR_TIMING_BITS,
-      ERR_CRC
-    };
+    const uint16_t cSamplingTime = 2100; // ms : dht22 sampling rate ~0.5Hz
 
   public:
-    //dht22 sampling rate ~0.5Hz
-    static const uint16_t cSamplingTime = 2100; // ms
-
     DHT22(uint8_t pinData){
       _pinData = pinData;
     };
@@ -70,13 +69,11 @@ class DHT22{
     *@brief read the 40bits sensor data
     *@return 0 if no error, num of error instead
     */
-    uint16_t readSensor();
+    uint8_t readSensor();
 
     /** @brief compute checksum of h & t data
      * @return true if checksum==crc**/
     bool computeCRC();
-    
 };
-
 #endif
 
